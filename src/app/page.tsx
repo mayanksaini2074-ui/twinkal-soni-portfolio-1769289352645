@@ -7,6 +7,7 @@ import ExperienceSection from '@/components/portfolio/ExperienceSection';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import SkillsSection from '@/components/portfolio/SkillsSection';
 import ContactSection from '@/components/portfolio/ContactSection';
+import PortcraftCredit from '@/components/portfolio/PortcraftCredit';
 
 // Helper function to check if skills have any data
 function hasSkillsData(skills: typeof portfolioData.skills): boolean {
@@ -61,6 +62,8 @@ export default function Home() {
       {showContact && (
         <ContactSection data={data} variant={config.contact} palette={config.colorPalette} />
       )}
+
+      <PortcraftCredit />
     </main>
   );
 }

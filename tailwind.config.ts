@@ -21,6 +21,9 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      opacity: Object.fromEntries(
+        Array.from({ length: 101 }, (_, value) => [value, String(value / 100)])
+      ),
       animation: {
         shimmer: 'shimmer 2s linear infinite',
         'spin-slow': 'spin 8s linear infinite',

@@ -25,8 +25,8 @@ export const CardContainer = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse" || !containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
@@ -34,12 +34,12 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
   };
 
-  const handleMouseEnter = () => {
+  const handlePointerEnter = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
     setIsMouseEntered(true);
-    if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = () => {
+  const resetTransform = () => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
@@ -49,7 +49,7 @@ export const CardContainer = ({
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={cn(
-          "py-4 flex items-center justify-center",
+          "flex w-full min-w-0 max-w-full items-center justify-center py-4",
           containerClassName
         )}
         style={{
@@ -58,11 +58,12 @@ export const CardContainer = ({
       >
         <div
           ref={containerRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          onPointerEnter={handlePointerEnter}
+          onPointerMove={handlePointerMove}
+          onPointerLeave={resetTransform}
+          onPointerCancel={resetTransform}
           className={cn(
-            "flex items-center justify-center relative transition-all duration-200 ease-linear",
+            "relative flex w-full min-w-0 max-w-full items-center justify-center transition-all duration-200 ease-linear",
             className
           )}
           style={{
@@ -86,7 +87,7 @@ export const CardBody = ({
   return (
     <div
       className={cn(
-        "h-auto w-full [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]",
+        "h-auto w-full min-w-0 max-w-full [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]",
         className
       )}
     >
@@ -138,7 +139,10 @@ export const CardItem = ({
   return (
     <Tag
       ref={ref}
-      className={cn("w-full transition duration-200 ease-linear", className)}
+      className={cn(
+        "w-full min-w-0 max-w-full transition duration-200 ease-linear",
+        className
+      )}
       {...rest}
     >
       {children}

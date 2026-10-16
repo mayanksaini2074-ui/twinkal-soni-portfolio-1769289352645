@@ -1,13 +1,19 @@
-import { ResumeData, SectionConfig } from '@/types/portfolio';
+import { IResumeData, ISectionConfig } from '@/types/portfolio';
 
-export const portfolioData: ResumeData = {
+export const portfolioData: IResumeData = {
   "personalInfo": {
     "name": "Twinkal Soni",
-    "title": "Engineering Student",
+    "title": "Engineer ",
     "email": "twinkalsoni07@gmail.com",
     "phone": "+91-7988753365",
-    "linkedin": "linkedin.com/in/twinkal-soni-nitkkr",
+    "linkedin": "",
     "github": "",
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/twinkal-soni-nitkkr"
+      }
+    ],
     "location": "Mahendragarh, Haryana",
     "summary": "Results-oriented Engineering student with a versatile background in Management, Sales, and Technology. Successfully generated 200,000 INR revenue in sales, led large-scale campus events as Management Head, and executed technical security projects at CDAC."
   },
@@ -76,10 +82,33 @@ export const portfolioData: ResumeData = {
     }
   ],
   "skills": {
-    "frontend": [],
-    "backend": [],
-    "devops": [],
-    "additional": []
+    "Management & Sales": [
+      "Event Planning",
+      "Team Leadership",
+      "Revenue Generation",
+      "Client Negotiation",
+      "Crisis Management"
+    ],
+    "Cybersecurity": [
+      "Ethical Hacking",
+      "Vulnerability Assessment",
+      "Network Security",
+      "Phishing Analysis",
+      "Linux (Kali)"
+    ],
+    "Software & Tools": [
+      "SOLIDWORKS (Certified)",
+      "MS Office (Excel/PowerPoint)",
+      "Wireshark",
+      "Google Analytics"
+    ],
+    "Core Soft Skills": [
+      "Strategic Thinking",
+      "Public Speaking",
+      "Time Management",
+      "Adaptability",
+      "Problem Solving"
+    ]
   },
   "projects": [
     {
@@ -90,18 +119,19 @@ export const portfolioData: ResumeData = {
         "Security Proposals"
       ],
       "link": "",
-      "github": ""
+      "github": "",
+      "links": []
     }
   ]
 };
 
-export const sectionConfig: SectionConfig = {
-  "hero": "falling-snow",
+export const sectionConfig: ISectionConfig = {
+  "hero": "spotlight",
   "about": "split",
-  "experience": "timeline",
-  "projects": "grid",
+  "experience": "cards",
+  "projects": "featured",
   "skills": "tags",
   "skillsDisplay": "separate",
-  "contact": "simple",
-  "colorPalette": "slate"
+  "contact": "modern",
+  "colorPalette": "cyan"
 };

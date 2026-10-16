@@ -1,6 +1,7 @@
 'use client';
 
 import { portfolioData, sectionConfig } from '@/data/portfolio';
+import { hasSkillsData, hasContactData } from '@/utils/sectionVisibility';
 import HeroSection from '@/components/portfolio/HeroSection';
 import AboutSection from '@/components/portfolio/AboutSection';
 import ExperienceSection from '@/components/portfolio/ExperienceSection';
@@ -8,26 +9,6 @@ import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import SkillsSection from '@/components/portfolio/SkillsSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import PortcraftCredit from '@/components/portfolio/PortcraftCredit';
-
-// Helper function to check if skills have any data
-function hasSkillsData(skills: typeof portfolioData.skills): boolean {
-  if (!skills) return false;
-  if (typeof skills !== 'object') return false;
-  return Object.values(skills).some(
-    (skillList) => Array.isArray(skillList) && skillList.length > 0
-  );
-}
-
-// Helper function to check if contact info exists
-function hasContactData(personalInfo: typeof portfolioData.personalInfo): boolean {
-  return !!(
-    personalInfo.email ||
-    personalInfo.phone ||
-    personalInfo.linkedin ||
-    personalInfo.github ||
-    personalInfo.location
-  );
-}
 
 export default function Home() {
   const data = portfolioData;

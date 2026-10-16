@@ -3,7 +3,7 @@
 import React, { useId, useMemo } from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 type ParticlesProps = {
@@ -39,10 +39,6 @@ export const SparklesCore = (props: ParticlesProps) => {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container) => {
-    console.log(container);
-  };
-
   const generatedId = useId();
 
   const options: ISourceOptions = useMemo(
@@ -56,7 +52,7 @@ export const SparklesCore = (props: ParticlesProps) => {
         enable: false,
         zIndex: 1,
       },
-      fpsLimit: 120,
+      fpsLimit: 60,
       interactivity: {
         events: {
           onClick: {
@@ -137,16 +133,16 @@ export const SparklesCore = (props: ParticlesProps) => {
     [background, minSize, maxSize, speed, particleColor, particleDensity]
   );
 
-  if (init) {
-    return (
+  const particleCanvas = useMemo(
+    () => (
       <Particles
         id={id || generatedId}
         className={className}
-        particlesLoaded={particlesLoaded}
         options={options}
       />
-    );
-  }
+    ),
+    [className, generatedId, id, options]
+  );
 
-  return null;
+  return init ? particleCanvas : null;
 };

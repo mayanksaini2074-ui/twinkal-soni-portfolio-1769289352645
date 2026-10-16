@@ -1,13 +1,13 @@
-import { ResumeData, AboutVariant, ColorPalette } from './portfolio';
+import { IResumeData, AboutVariant, ColorPalette } from '@/types/portfolio';
 import { getThemeColors } from '@/utils/theme';
 
-export interface AboutProps {
-  data: ResumeData;
+export interface IAboutProps {
+  data: IResumeData;
   theme: ReturnType<typeof getThemeColors>;
 }
 
-export interface AboutSectionProps {
-  data: ResumeData;
+export interface IAboutSectionProps {
+  data: IResumeData;
   variant: AboutVariant;
   palette: ColorPalette;
 }

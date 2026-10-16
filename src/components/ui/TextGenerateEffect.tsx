@@ -55,7 +55,12 @@ export const TextGenerateEffect = ({
   };
 
   return (
-    <div className={cn("font-bold", className)}>
+    <div
+      className={cn(
+        "min-w-0 max-w-full whitespace-normal [overflow-wrap:anywhere] font-bold",
+        className
+      )}
+    >
       <div>
         <div className="leading-snug tracking-wide">
           {renderWords()}

@@ -116,3 +116,14 @@ export const getThemeColors = (palette: ColorPalette) => {
 
   return themes[palette] || themes.blue;
 };
+
+// Maps a palette name to its representative hex accent color.
+// Single source of truth for decorative/sparkle accents across sections.
+export const getPaletteHex = (palette: string): string => {
+  const colorMap: Record<string, string> = {
+    blue: '#3b82f6', purple: '#a855f7', emerald: '#10b981', rose: '#f43f5e',
+    amber: '#f59e0b', slate: '#64748b', cyan: '#06b6d4', indigo: '#6366f1',
+    orange: '#f97316', teal: '#14b8a6'
+  };
+  return colorMap[palette] || '#3b82f6';
+};
